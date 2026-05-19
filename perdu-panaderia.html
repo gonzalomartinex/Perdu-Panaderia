@@ -1,0 +1,1670 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PERDU — Panadería · Córdoba</title>
+<link rel="icon" type="image/webp" href="media/PerduLogo.svg">
+<link rel="shortcut icon" type="image/webp" href="media/PerduLogo.svg">
+<link rel="apple-touch-icon" href="media/PerduLogo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@300;400;500;700;900&family=Anton&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal:#1B6778;
+  --teal-dark:#134f5c;
+  --teal-deep:#0c3740;
+  --teal-deeper:#071f25;
+  --gold:#C8882A;
+  --gold-light:#e8a94a;
+  --cream:#F2E8D0;
+  --cream-soft:#fdf8f0;
+  --white:#FFFFFF;
+  --text-muted:rgba(242,232,208,0.55);
+  --ff-serif:'Playfair Display',Georgia,serif;
+  --ff-sans:'Barlow',sans-serif;
+  --ff-cond:'Barlow Condensed',sans-serif;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:var(--teal-deeper);color:var(--cream);font-family:var(--ff-sans);font-weight:300;line-height:1.7;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{display:block;width:100%;object-fit:cover}
+::selection{background:var(--gold);color:var(--teal-deeper)}
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--teal-deep)}
+::-webkit-scrollbar-thumb{background:var(--gold)}
+
+/* ─── NAV ─── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.25rem 4rem;
+  transition:background .5s,backdrop-filter .5s;
+}
+nav.scrolled{background:rgba(7,31,37,.88);backdrop-filter:blur(18px)}
+.nav-logo{
+  display:flex;align-items:center;
+}
+.nav-logo img{
+  height:38px;width:auto;object-fit:contain;
+  filter:brightness(0) invert(1);
+}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{
+  font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(255,255,255,.7);transition:color .3s;font-weight:400;
+}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{
+  background:transparent;border:1px solid var(--gold);color:var(--gold);
+  padding:.5rem 1.4rem;font-family:var(--ff-sans);font-size:.75rem;
+  letter-spacing:.16em;text-transform:uppercase;cursor:pointer;
+  transition:all .3s;font-weight:500;
+}
+.nav-cta:hover{background:var(--gold);color:var(--teal-deeper)}
+.nav-burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.nav-burger span{display:block;width:24px;height:1.5px;background:var(--cream);transition:.3s}
+
+/* ─── HERO ─── */
+#hero{
+  position:relative;min-height:100vh;
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  overflow:hidden;
+  background:var(--teal-deep);
+}
+.hero-bg{position:absolute;inset:0;background-image:url('media/medialunas.webp');
+  background-size:cover;background-position:center 30%;
+  transform:scale(1.08);
+  animation:heroZoom 18s ease-in-out infinite alternate;
+}
+@keyframes heroZoom{to{transform:scale(1)}}
+.hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(
+    to bottom,
+    rgba(7,31,37,.3) 0%,
+    rgba(12,55,64,.55) 40%,
+    rgba(7,31,37,.82) 80%,
+    var(--teal-deeper) 100%
+  );
+}
+.hero-content{position:relative;z-index:2;max-width:780px;padding:0 2rem}
+.hero-eyebrow{
+  font-family:var(--ff-cond);font-size:.72rem;letter-spacing:.35em;
+  text-transform:uppercase;color:var(--white);margin-bottom:1.6rem;
+  opacity:0;animation:fadeUp .9s .3s forwards;
+  text-shadow:0 1px 12px rgba(0,0,0,.7);
+  font-weight:500;
+}
+.hero-logo-wrap{
+  opacity:0;animation:fadeUp 1s .4s forwards;
+  margin-bottom:.2rem;
+}
+.hero-sub{
+  font-family:var(--ff-sans);font-size:clamp(1rem,2vw,1.15rem);font-weight:300;
+  color:rgba(242,232,208,.85);max-width:520px;margin:1.4rem auto 2.8rem;
+  line-height:1.8;
+  opacity:0;animation:fadeUp .9s .7s forwards;
+}
+.hero-actions{
+  display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap;
+  opacity:0;animation:fadeUp .9s .9s forwards;
+}
+.btn-primary{
+  background:var(--gold);color:var(--teal-deeper);
+  padding:.9rem 2.4rem;font-family:var(--ff-sans);font-weight:600;
+  font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;
+  border:none;cursor:pointer;transition:all .3s;display:inline-block;
+}
+.btn-primary:hover{background:var(--gold-light);transform:translateY(-2px)}
+.btn-outline{
+  background:transparent;color:var(--cream);
+  padding:.9rem 2.4rem;font-family:var(--ff-sans);font-weight:400;
+  font-size:.8rem;letter-spacing:.18em;text-transform:uppercase;
+  border:1px solid rgba(242,232,208,.4);cursor:pointer;transition:all .3s;display:inline-block;
+}
+.btn-outline:hover{border-color:var(--cream);background:rgba(242,232,208,.07);transform:translateY(-2px)}
+.hero-scroll{
+  position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:.6rem;
+  font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--text-muted);
+  animation:pulse 2.5s ease-in-out infinite;
+}
+.hero-scroll::after{
+  content:'';display:block;width:1px;height:40px;
+  background:linear-gradient(to bottom,var(--gold),transparent);
+}
+@keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}
+
+/* ─── SECTION GLOBALS ─── */
+section{padding:6rem 4rem}
+.section-label{
+  font-family:var(--ff-cond);font-size:.68rem;letter-spacing:.38em;
+  text-transform:uppercase;color:var(--gold);margin-bottom:1rem;
+}
+.section-title{
+  font-family:var(--ff-serif);font-size:clamp(2.2rem,4.5vw,3.6rem);
+  font-weight:700;line-height:1.1;color:var(--white);
+}
+.section-title em{font-style:italic;color:var(--gold)}
+.container{max-width:1200px;margin:0 auto}
+
+/* ─── MARQUEE STRIP ─── */
+.marquee-strip{
+  background:var(--gold);padding:.75rem 0;overflow:hidden;
+  border-top:1px solid rgba(242,232,208,.1);
+  border-bottom:1px solid rgba(242,232,208,.1);
+}
+.marquee-track{
+  display:flex;white-space:nowrap;
+  animation:marquee 30s linear infinite;
+}
+.marquee-track span{
+  font-family:var(--ff-cond);font-size:.78rem;font-weight:700;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--teal-deeper);
+  padding:0 2.5rem;
+}
+@keyframes marquee{to{transform:translateX(-50%)}}
+
+/* ─── EXPERIENCIA ─── */
+#experiencia{background:var(--teal-deep)}
+.exp-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:5rem;
+  align-items:center;margin-top:3.5rem;
+}
+.exp-img-wrap{
+  position:relative;aspect-ratio:4/5;
+  /* overflow:visible so the gold accent can bleed outside the image bounds */
+}
+.exp-img-wrap img{
+  width:100%;height:100%;object-fit:cover;
+  /* clip-path:inset(0) keeps the zoom transform clipped to the image box */
+  clip-path:inset(0);
+  transition:transform .8s ease;
+}
+.exp-img-wrap:hover img{transform:scale(1.04)}
+.exp-img-accent{
+  position:absolute;
+  bottom:8%;right:6%;
+  width:62%;aspect-ratio:1;
+  border:2px solid var(--gold);
+  pointer-events:none;
+  z-index:1;
+  box-shadow:inset 0 0 0 6px rgba(200,136,42,.08);
+}
+.exp-text p{
+  font-size:1.05rem;line-height:1.95;color:rgba(242,232,208,.8);
+  margin-bottom:1.4rem;
+}
+.exp-text p strong{color:var(--cream);font-weight:500}
+.exp-stat-row{
+  display:flex;gap:2.5rem;margin-top:2.5rem;
+  padding-top:2rem;border-top:1px solid rgba(200,136,42,.25);
+}
+.exp-stat{text-align:left}
+.exp-stat-num{
+  font-family:var(--ff-serif);font-size:2.8rem;font-weight:900;
+  color:var(--gold);line-height:1;
+}
+.exp-stat-label{
+  font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--text-muted);margin-top:.3rem;
+}
+
+/* ─── DISTINTOS ─── */
+#distintos{background:var(--teal-deeper)}
+.distintos-intro{
+  max-width:620px;margin-bottom:4rem;
+}
+.distintos-intro p{
+  font-size:1.05rem;color:rgba(242,232,208,.75);margin-top:1.2rem;line-height:1.9;
+}
+.distintos-cards{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;
+}
+.dist-card{
+  background:var(--teal-deep);padding:2.5rem;
+  border-bottom:3px solid transparent;
+  transition:border-color .3s,background .3s;
+}
+.dist-card:hover{border-color:var(--gold);background:rgba(27,103,120,.4)}
+.dist-icon{
+  font-size:1.8rem;margin-bottom:1.2rem;
+  display:inline-block;
+}
+.dist-card h3{
+  font-family:var(--ff-serif);font-size:1.2rem;color:var(--white);
+  margin-bottom:.7rem;font-weight:700;
+}
+.dist-card p{font-size:.88rem;color:var(--text-muted);line-height:1.75}
+
+/* ─── PRODUCTOS ─── */
+#productos{
+  background:var(--teal-deep);
+  padding-bottom:8rem;
+}
+.productos-header{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  margin-bottom:3.5rem;flex-wrap:wrap;gap:1rem;
+}
+.productos-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;
+}
+.prod-card{
+  position:relative;overflow:hidden;
+  background:var(--teal-deeper);
+  cursor:default;
+  transition:transform .4s;
+}
+.prod-card:hover{transform:translateY(-6px)}
+.prod-img{
+  aspect-ratio:4/3;overflow:hidden;position:relative;
+}
+.prod-img img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform .6s ease;
+  filter:brightness(.85) saturate(1.1);
+}
+.prod-card:hover .prod-img img{transform:scale(1.06)}
+.prod-tag{
+  position:absolute;top:1rem;left:1rem;z-index:2;
+  background:var(--gold);color:var(--teal-deeper);
+  font-family:var(--ff-cond);font-size:.65rem;font-weight:700;
+  letter-spacing:.2em;text-transform:uppercase;padding:.3rem .7rem;
+}
+.prod-body{padding:1.6rem 1.8rem 2rem}
+.prod-name{
+  font-family:var(--ff-serif);font-size:1.35rem;font-weight:700;
+  color:var(--white);margin-bottom:.5rem;
+}
+.prod-desc{
+  font-size:.88rem;color:rgba(242,232,208,.65);line-height:1.75;
+}
+
+/* ─── REVIEWS ─── */
+#reviews{background:var(--teal-deeper)}
+.reviews-intro{max-width:560px;margin-bottom:4rem}
+.reviews-intro p{font-size:1rem;color:var(--text-muted);margin-top:1rem;line-height:1.9}
+.reviews-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;
+}
+.rev-card{
+  background:var(--teal-deep);padding:2rem 2rem 2.2rem;
+  border-left:2px solid var(--gold);
+  transition:transform .3s;
+}
+.rev-card:hover{transform:translateY(-4px)}
+.rev-stars{color:var(--gold);font-size:1rem;letter-spacing:2px;margin-bottom:1rem}
+.rev-text{
+  font-family:var(--ff-serif);font-style:italic;
+  font-size:1rem;line-height:1.75;color:var(--cream);
+  margin-bottom:1.4rem;
+}
+.rev-author{
+  font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--text-muted);
+}
+
+/* ─── FILOSOFIA ─── */
+#filosofia{
+  background:var(--teal);
+  position:relative;overflow:hidden;
+  text-align:center;padding:8rem 4rem;
+}
+#filosofia::before{
+  content:'';position:absolute;inset:0;
+  background:url('media/cafemolido.webp') center/cover no-repeat;
+  opacity:.15;
+}
+.filosofia-content{position:relative;z-index:1;max-width:780px;margin:0 auto}
+.filosofia-quote{
+  font-family:var(--ff-serif);font-size:clamp(1.5rem,3.5vw,2.6rem);
+  font-weight:700;line-height:1.3;color:var(--white);
+  margin-bottom:1.8rem;
+}
+.filosofia-quote em{color:var(--gold)}
+.filosofia-body{
+  font-size:1rem;color:rgba(255,255,255,.75);
+  max-width:560px;margin:0 auto 2.5rem;line-height:1.95;
+}
+.filosofia-since{
+  font-family:var(--ff-cond);font-size:.7rem;
+  letter-spacing:.35em;text-transform:uppercase;color:var(--gold-light);
+}
+
+/* ─── SUCURSALES ─── */
+#sucursales{background:var(--teal-deeper)}
+.sucursales-intro{max-width:580px;margin-bottom:3.5rem}
+.sucursales-intro p{color:var(--text-muted);margin-top:.8rem;font-size:.95rem}
+.suc-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1px;
+  background:rgba(200,136,42,.15);
+}
+.suc-item{
+  background:var(--teal-deeper);padding:1.6rem 1.8rem;
+  border-bottom:1px solid rgba(200,136,42,.12);
+  transition:background .25s;
+  display:flex;align-items:flex-start;gap:1rem;
+}
+.suc-item:hover{background:var(--teal-deep)}
+.suc-num{
+  font-family:var(--ff-serif);font-size:1.4rem;font-weight:900;
+  color:rgba(200,136,42,.3);line-height:1;flex-shrink:0;padding-top:.1rem;
+}
+.suc-addr{
+  font-size:.92rem;color:var(--cream);line-height:1.4;
+}
+.suc-addr a{
+  display:block;transition:color .25s;
+}
+.suc-addr a:hover{color:var(--gold)}
+.suc-tag{
+  font-size:.67rem;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--text-muted);margin-top:.25rem;
+}
+
+/* ─── PEDIDOS ─── */
+#pedidos{
+  background:var(--teal-deep);
+  padding:5rem 4rem;
+  display:flex;align-items:center;justify-content:center;
+  text-align:center;
+}
+.pedidos-inner{max-width:680px}
+.pedidos-inner .section-title{margin-bottom:1rem}
+.pedidos-inner p{
+  font-size:1rem;color:var(--text-muted);margin-bottom:2.5rem;line-height:1.85;
+}
+.pedidos-btns{
+  display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap;
+}
+.btn-delivery{
+  display:inline-flex;align-items:center;gap:.6rem;
+  padding:.85rem 2rem;font-family:var(--ff-cond);font-size:.85rem;
+  font-weight:600;letter-spacing:.16em;text-transform:uppercase;
+  border:1px solid;transition:all .3s;
+}
+.btn-py{
+  background:rgba(255,70,60,.08);color:#FF463C;border-color:rgba(255,70,60,.35);
+}
+.btn-py:hover{background:#FF463C;color:#fff}
+.btn-rappi{
+  background:rgba(255,102,0,.08);color:#FF6600;border-color:rgba(255,102,0,.35);
+}
+.btn-rappi:hover{background:#FF6600;color:#fff}
+.btn-wa{
+  background:rgba(37,211,102,.08);color:#25D366;border-color:rgba(37,211,102,.35);
+}
+.btn-wa:hover{background:#25D366;color:#fff}
+
+/* ─── CTA FINAL ─── */
+#cta-final{
+  position:relative;overflow:hidden;
+  background:var(--teal-deep);
+  padding:9rem 4rem;text-align:center;
+}
+#cta-final::before{
+  content:'';position:absolute;inset:0;
+  background:url('media/panmasamadre2.webp') center/cover;
+  opacity:.12;
+}
+.cta-final-content{position:relative;z-index:1;max-width:680px;margin:0 auto}
+.cta-final-title{
+  font-family:var(--ff-serif);font-size:clamp(2.4rem,5vw,4rem);
+  font-weight:900;color:var(--white);line-height:1.05;margin-bottom:1.4rem;
+}
+.cta-final-title em{font-style:italic;color:var(--gold)}
+.cta-final-sub{
+  font-size:1rem;color:rgba(242,232,208,.7);max-width:480px;
+  margin:0 auto 2.8rem;line-height:1.9;
+}
+
+/* ─── SOCIAL STRIP ─── */
+.social-strip{
+  background:var(--teal-deeper);
+  padding:2rem 4rem;
+  display:flex;align-items:center;justify-content:center;gap:2.5rem;
+}
+.social-link{
+  font-family:var(--ff-cond);font-size:.72rem;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--text-muted);
+  border-bottom:1px solid transparent;padding-bottom:1px;
+  transition:color .3s,border-color .3s;
+}
+.social-link:hover{color:var(--gold);border-color:var(--gold)}
+
+/* ─── FOOTER ─── */
+footer{
+  background:var(--teal-deeper);
+  border-top:1px solid rgba(200,136,42,.2);
+  padding:3rem 4rem;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:1.5rem;
+}
+.footer-brand{
+  font-family:var(--ff-cond);font-size:1.1rem;font-weight:700;
+  letter-spacing:.3em;text-transform:uppercase;color:var(--white);
+}
+.footer-brand span{color:var(--gold)}
+.footer-copy{
+  font-size:.75rem;color:var(--text-muted);letter-spacing:.08em;
+}
+.footer-sub{
+  font-size:.68rem;color:rgba(200,136,42,.55);
+  letter-spacing:.12em;text-transform:uppercase;
+  margin-top:.25rem;
+}
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(28px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.reveal{
+  opacity:0;transform:translateY(32px);
+  transition:opacity .8s ease,transform .8s ease;
+}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.32s}
+.reveal-delay-4{transition-delay:.45s}
+
+/* ─── MOBILE NAV ─── */
+.mobile-menu{
+  display:none;position:fixed;top:0;left:0;right:0;bottom:0;
+  background:var(--teal-deep);z-index:200;
+  flex-direction:column;align-items:center;justify-content:center;gap:2rem;
+  opacity:0;pointer-events:none;transition:opacity .35s;
+}
+.mobile-menu.open{display:flex;opacity:1;pointer-events:all}
+.mobile-menu a{
+  font-family:var(--ff-cond);font-size:1.4rem;font-weight:500;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--cream);
+  transition:color .25s;
+}
+.mobile-menu a:hover{color:var(--gold)}
+.mobile-close{
+  position:absolute;top:1.5rem;right:2rem;
+  font-size:1.5rem;color:var(--cream);cursor:pointer;
+  background:none;border:none;
+}
+
+
+.suc-hours{
+  font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--gold);opacity:.75;margin-top:.3rem;font-weight:400;
+}
+/* ─── RESPONSIVE ─── */
+@media(max-width:900px){
+  nav{padding:1.25rem 2rem}
+  .nav-links,.nav-cta{display:none}
+  .nav-burger{display:flex}
+  section{padding:5rem 2rem}
+  .exp-grid{grid-template-columns:1fr;gap:3rem}
+  .distintos-cards{grid-template-columns:1fr 1fr}
+  .productos-grid{grid-template-columns:1fr 1fr}
+  .reviews-grid{grid-template-columns:1fr 1fr}
+  footer{padding:2rem;flex-direction:column;text-align:center}
+  .social-strip{padding:1.5rem 2rem;flex-wrap:wrap}
+  #filosofia{padding:6rem 2rem}
+  #cta-final{padding:7rem 2rem}
+  .hero-actions{flex-direction:column;align-items:center}
+}
+@media(max-width:600px){
+  .distintos-cards,.productos-grid,.reviews-grid{grid-template-columns:1fr}
+  .exp-stat-row{gap:1.5rem}
+  .pedidos-btns{flex-direction:column;align-items:center}
+  .suc-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════ NAV -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo" aria-label="PERDU"><svg style="height:42px;width:auto;display:block;" aria-label="PERDU Panadería" viewBox="10 114 195 107" xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.0"><defs
+     id="defs1"><clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath5"><path
+         style="display:none;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         d="m -4.9725784,122.69998 -0.068496,39.59082 h 2.1956839 c 0.8333717,-0.19408 1.0048908,-1.0049 1.0048908,-1.0049 v -37.22976 c 0,0 -0.1188314,-1.05494 -1.123444,-1.32893 z"
+         id="path5"
+         sodipodi:nodetypes="ccccccc" /><path
+         id="lpe_path-effect5"
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         class="powerclip"
+         d="m -30.621012,101.31942 h 54.171886 v 99.8809 h -54.171886 z m 25.6484336,21.38056 -0.068496,39.59082 h 2.1956839 c 0.8333717,-0.19408 1.0048908,-1.0049 1.0048908,-1.0049 v -37.22976 c 0,0 -0.1188314,-1.05494 -1.123444,-1.32893 z" /></clipPath><clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath8"><path
+         style="display:none;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         d="m 106.89991,149.13929 v -15.11484 h 1.96356 c 1.13013,0.32289 1.34709,1.43842 1.34709,1.43842 l -0.0457,11.91835 c 0,0 -0.0691,1.38631 -1.25633,1.75163 z"
+         id="path9"
+         sodipodi:nodetypes="ccccccc" /><path
+         id="lpe_path-effect9"
+         style="fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         class="powerclip"
+         d="m 64.412856,101.2907 h 89.316534 v 99.86119 H 64.412856 Z m 42.487054,47.84859 2.00862,-0.006 c 1.18723,-0.36532 1.25633,-1.75163 1.25633,-1.75163 l 0.0457,-11.91835 c 0,0 -0.21696,-1.11553 -1.34709,-1.43842 h -1.96356 z" /></clipPath><clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath14"><path
+         style="display:none;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         d="m 161.97094,124.29797 0.0114,54.1235 1.98638,-0.0114 c 0.98178,-0.18265 1.26985,-1.3095 1.26985,-1.3095 l 0.0544,-50.86186 c 0,0 -0.11417,-1.74666 -1.49551,-1.91789 z"
+         id="path14"
+         sodipodi:nodetypes="ccccccc" /><path
+         id="lpe_path-effect14"
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         class="powerclip"
+         d="m 136.25362,101.54883 h 55.49875 v 99.56544 h -55.49875 z m 25.71732,22.74914 0.0114,54.1235 1.98638,-0.0114 c 0.98178,-0.18265 1.26985,-1.3095 1.26985,-1.3095 l 0.0544,-50.86186 c 0,0 -0.11417,-1.74666 -1.49551,-1.91789 z" /></clipPath><clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath3"><path
+         style="display:none;opacity:0.282119;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         d="m 59.436844,201.85763 -0.0081,2.52665 h 2.986775 c 0.589891,-0.28189 1.097211,-1.87663 -0.234098,-2.48629 z"
+         id="path4"
+         sodipodi:nodetypes="ccccc" /><path
+         id="lpe_path-effect4"
+         style="opacity:0.282119;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         class="powerclip"
+         d="m 48.386029,190.69558 h 25.793679 v 27.93024 H 48.386029 Z m 11.050815,11.16205 -0.0081,2.52665 h 2.986775 c 0.589891,-0.28189 1.097211,-1.87663 -0.234098,-2.48629 z" /></clipPath><clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath11"><path
+         style="display:none;opacity:0.329801;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         d="m 69.83199,205.37477 h 2.363123 l -1.175853,-3.15083 z"
+         id="path12" /><path
+         id="lpe_path-effect12"
+         style="opacity:0.329801;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         class="powerclip"
+         d="m 55.443398,190.76528 h 31.419967 v 27.8593 H 55.443398 Z m 14.388592,14.60949 h 2.363123 l -1.175853,-3.15083 z" /></clipPath><clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath11-0"><path
+         style="display:none;opacity:0.329801;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         d="m 69.83199,205.37477 h 2.363123 l -1.175853,-3.15083 z"
+         id="path12-2" /><path
+         id="lpe_path-effect12-1"
+         style="opacity:0.329801;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         class="powerclip"
+         d="m 55.443398,190.76528 h 31.419967 v 27.8593 H 55.443398 Z m 14.388592,14.60949 h 2.363123 l -1.175853,-3.15083 z" /></clipPath><clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipath_lpe_path-effect12-9"><path
+         style="display:none;opacity:0.329801;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         d="m 69.83199,205.37477 h 2.363123 l -1.175853,-3.15083 z"
+         id="path16" /><path
+         id="lpe_path-effect12-9"
+         style="opacity:0.329801;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         class="powerclip"
+         d="m 55.443398,190.76528 h 31.419967 v 27.8593 H 55.443398 Z m 14.388592,14.60949 h 2.363123 l -1.175853,-3.15083 z" /></clipPath><clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath18"><path
+         style="display:none;opacity:0.513907;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         d="m 100.46869,201.90606 v 5.63451 h 2.42171 c 2.06653,-0.74266 1.95351,-2.66388 1.95351,-2.66388 0,0 0.2099,-2.06652 -1.95351,-2.98677 z"
+         id="path19"
+         sodipodi:nodetypes="cccccc" /><path
+         id="lpe_path-effect19"
+         style="opacity:0.513907;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         class="powerclip"
+         d="m 89.485629,190.81749 h 26.438241 v 27.803 H 89.485629 Z m 10.983061,11.08857 v 5.63451 h 2.42171 c 2.06653,-0.74266 1.95351,-2.66388 1.95351,-2.66388 0,0 0.2099,-2.06652 -1.95351,-2.98677 z" /></clipPath><clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath24"><path
+         style="display:none;opacity:0.513907;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         d="m 120.72947,201.77929 -0.0161,2.63653 h 2.6257 c 1.64748,-0.0182 1.73165,-2.56274 0,-2.61842 z"
+         id="path24"
+         sodipodi:nodetypes="ccccc" /><path
+         id="lpe_path-effect24"
+         style="opacity:0.513907;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         class="powerclip"
+         d="m 109.74728,190.85843 h 29.0989 v 27.76212 h -29.0989 z m 10.98219,10.92086 -0.0161,2.63653 h 2.6257 c 1.64748,-0.0182 1.73165,-2.56274 0,-2.61842 z" /></clipPath><clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipath_lpe_path-effect12-9-6"><path
+         style="display:none;opacity:0.329801;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         d="m 69.83199,205.37477 h 2.363123 l -1.175853,-3.15083 z"
+         id="path16-7" /><path
+         id="lpe_path-effect12-9-0"
+         style="opacity:0.329801;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         class="powerclip"
+         d="m 55.443398,190.76528 h 31.419967 v 27.8593 H 55.443398 Z m 14.388592,14.60949 h 2.363123 l -1.175853,-3.15083 z" /></clipPath><clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipath_lpe_path-effect12-9-5"><path
+         style="display:none;opacity:0.329801;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         d="m 69.83199,205.37477 h 2.363123 l -1.175853,-3.15083 z"
+         id="path27" /><path
+         id="lpe_path-effect12-9-5"
+         style="opacity:0.329801;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         class="powerclip"
+         d="m 55.443398,190.76528 h 31.419967 v 27.8593 H 55.443398 Z m 14.388592,14.60949 h 2.363123 l -1.175853,-3.15083 z" /></clipPath></defs><g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1"><path
+       style="display:inline;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+       d="m -20.69755,191.28282 h 16.6613662 v -18.69495 c 1.6790525,0.0646 9.1702094,0.41911 13.40013,-2.74526 4.5205258,-3.16437 4.2622098,-9.04105 4.2622098,-9.04105 v -38.29531 c -0.6135,-5.13403 -2.906052,-6.90995 -2.906052,-6.90995 -3.293526,-4.06847 -11.7856565,-4.19763 -11.7856565,-4.19763 l -19.5351295,-0.12916 z"
+       id="path1"
+       sodipodi:nodetypes="cccccccccc"
+       clip-path="url(#clipPath5)"
+       inkscape:path-effect="#path-effect5"
+       inkscape:original-d="m -20.69755,191.28282 h 16.6613662 v -18.69495 c 1.6790525,0.0646 9.1702094,0.41911 13.40013,-2.74526 4.5205258,-3.16437 4.2622098,-9.04105 4.2622098,-9.04105 v -38.29531 c -0.6135,-5.13403 -2.906052,-6.90995 -2.906052,-6.90995 -3.293526,-4.06847 -11.7856565,-4.19763 -11.7856565,-4.19763 l -19.5351295,-0.12916 z"
+       transform="matrix(0.74537115,0,0,0.74537115,31.875524,35.552794)" /><path
+       style="fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:7.33073;stroke-linecap:round;stroke-opacity:0"
+       d="m 44.979685,118.56851 h 39.312479 v 16.72058 h -13.4752 v 7.46097 h 10.73417 v 11.84128 H 70.8651 v 7.46097 h 13.767434 v 16.14864 H 44.843538 v -59.66294 z"
+       id="path6" /><path
+       style="display:inline;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+       d="M 106.87815,191.21824 H 74.330361 v -79.88891 h 33.893809 c 34.88745,-2.00923 34.0655,20.36624 34.0655,20.36624 v 14.61255 c 0.36531,10.22878 -6.02768,14.42989 -6.02768,14.42989 l 6.40903,30.49638 h -32.52895 l -1.10053,-24.58844 -2.19568,0.0323 z"
+       id="path7"
+       clip-path="url(#clipPath8)"
+       inkscape:path-effect="#path-effect9"
+       inkscape:original-d="M 106.87815,191.21824 H 74.330361 v -79.88891 h 33.893809 c 34.88745,-2.00923 34.0655,20.36624 34.0655,20.36624 v 14.61255 c 0.36531,10.22878 -6.02768,14.42989 -6.02768,14.42989 l 6.40903,30.49638 h -32.52895 l -1.10053,-24.58844 -2.19568,0.0323 z"
+       sodipodi:nodetypes="cccccccccccc"
+       transform="matrix(0.74537115,0,0,0.74537115,31.875524,35.552794)" /><path
+       style="display:inline;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+       d="m 146.17112,191.15037 v -79.68404 h 19.58995 c 15.79982,0 16.0738,14.42989 16.0738,14.42989 v 51.00691 c 0,0 -0.39516,14.42206 -16.50761,14.2929 z"
+       id="path10"
+       sodipodi:nodetypes="ccccccc"
+       clip-path="url(#clipPath14)"
+       inkscape:path-effect="#path-effect14"
+       inkscape:original-d="m 146.17112,191.15037 v -79.68404 h 19.58995 c 15.79982,0 16.0738,14.42989 16.0738,14.42989 v 51.00691 c 0,0 -0.39516,14.42206 -16.50761,14.2929 z"
+       transform="matrix(0.74537115,0,0,0.74537115,31.875524,35.552794)" /><path
+       style="fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:7.33073;stroke-linecap:round;stroke-opacity:0"
+       d="m 170.24038,118.75463 h 11.81721 v 50.31339 c 0,0 0.49786,0.91881 1.20399,0.94823 0.36902,0.0154 0.77742,-0.15966 1.23887,-0.94823 v -50.46548 h 11.87484 v 52.40293 c -0.78285,8.64535 -13.25872,8.23114 -13.25872,8.23114 0,0 -12.19374,0.69093 -13.04466,-9.14571 l 0.006,-51.34831 z"
+       id="path15"
+       sodipodi:nodetypes="cccscccccccc" /><path
+       style="opacity:1;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+       d="m 58.351021,208.70826 0.07735,-8.04832 3.572173,0.0342 c 0.921854,0.26906 1.499628,0.60852 1.819559,1.07793 0.508119,0.74553 0.417988,1.62767 0.417988,1.62767 -0.03681,0.53367 -0.354253,1.06567 -0.774694,1.41527 -0.622854,0.5179 -1.417189,0.73095 -1.417189,0.73095 l -2.568611,0.0229 -0.03425,3.13941 z"
+       id="path2"
+       sodipodi:nodetypes="cccscscccc"
+       clip-path="url(#clipPath3)"
+       inkscape:path-effect="#path-effect4"
+       inkscape:original-d="m 58.351021,208.70826 0.07735,-8.04832 3.572173,0.0342 c 0.921854,0.26906 1.499628,0.60852 1.819559,1.07793 0.508119,0.74553 0.417988,1.62767 0.417988,1.62767 -0.03681,0.53367 -0.354253,1.06567 -0.774694,1.41527 -0.622854,0.5179 -1.417189,0.73095 -1.417189,0.73095 l -2.568611,0.0229 -0.03425,3.13941 z"
+       transform="matrix(0.74537115,0,0,0.74537115,31.875524,35.552794)" /><path
+       style="opacity:1;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+       d="m 67.491699,208.6626 2.968173,-7.97982 h 0.947533 l 3.196492,8.00265 h -1.164436 l -0.810541,-2.21472 h -3.025253 l -1.027444,2.2033 z"
+       id="path8"
+       sodipodi:nodetypes="ccccccccc"
+       clip-path="url(#clipPath11)"
+       inkscape:path-effect="#path-effect12"
+       inkscape:original-d="m 67.491699,208.6626 2.968173,-7.97982 h 0.947533 l 3.196492,8.00265 h -1.164436 l -0.810541,-2.21472 h -3.025253 l -1.027444,2.2033 z"
+       transform="matrix(0.74537115,0,0,0.74537115,31.875524,35.552794)" /><path
+       style="fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+       d="m 67.491699,208.6626 2.968173,-7.97982 h 0.947533 l 3.196492,8.00265 h -1.164436 l -0.810541,-2.21472 h -3.025253 l -1.027444,2.2033 z"
+       id="path8-8"
+       sodipodi:nodetypes="ccccccccc"
+       clip-path="url(#clipath_lpe_path-effect12-9)"
+       inkscape:path-effect="#path-effect12-9"
+       inkscape:original-d="m 67.491699,208.6626 2.968173,-7.97982 h 0.947533 l 3.196492,8.00265 h -1.164436 l -0.810541,-2.21472 h -3.025253 l -1.027444,2.2033 z"
+       transform="matrix(0.74537115,0,0,0.74537115,47.63237,35.679574)" /><path
+       style="fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+       d="m 67.491699,208.6626 2.968173,-7.97982 h 0.947533 l 3.196492,8.00265 h -1.164436 l -0.810541,-2.21472 h -3.025253 l -1.027444,2.2033 z"
+       id="path8-8-3"
+       sodipodi:nodetypes="ccccccccc"
+       clip-path="url(#clipath_lpe_path-effect12-9-5)"
+       inkscape:path-effect="#path-effect12-9-5"
+       inkscape:original-d="m 67.491699,208.6626 2.968173,-7.97982 h 0.947533 l 3.196492,8.00265 h -1.164436 l -0.810541,-2.21472 h -3.025253 l -1.027444,2.2033 z"
+       transform="matrix(0.74537115,0,0,0.74537115,82.147394,35.54528)" /><path
+       style="opacity:1;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:7.33073;stroke-linecap:round;stroke-opacity:0"
+       d="m 90.170354,191.14708 v -5.95157 h 0.79302 l 3.40368,4.85025 v -4.85025 h 0.73179 v 5.93942 h -0.81688 l -3.31859,-4.96937 v 5.00341 z"
+       id="path13" /><path
+       style="opacity:1;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+       d="m 99.403134,200.75978 v 7.94321 h 3.261236 c 3.22895,-0.85567 3.34196,-3.79401 3.34196,-3.79401 0,0 0.0161,-3.3581 -3.39039,-4.13305 z"
+       id="path17"
+       sodipodi:nodetypes="cccccc"
+       clip-path="url(#clipPath18)"
+       inkscape:path-effect="#path-effect19"
+       inkscape:original-d="m 99.403134,200.75978 v 7.94321 h 3.261236 c 3.22895,-0.85567 3.34196,-3.79401 3.34196,-3.79401 0,0 0.0161,-3.3581 -3.39039,-4.13305 z"
+       transform="matrix(0.74537115,0,0,0.74537115,31.875524,35.552794)" /><path
+       style="opacity:1;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:7.33073;stroke-linecap:round;stroke-opacity:0"
+       d="m 113.98926,185.17849 v 5.84582 h 3.67598 v -0.6467 h -3.09736 v -2.16134 h 2.72295 v -0.59564 h -2.68891 v -1.72737 h 3.09735 v -0.71477 z"
+       id="path20" /><path
+       style="opacity:1;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+       d="m 119.66478,208.70299 v -7.92706 h 3.5357 c 2.35713,0.35518 2.42171,2.454 2.42171,2.454 0,0 -0.14531,1.79207 -1.67906,2.06653 l 1.77592,3.39039 h -0.98482 l -1.904,-3.29781 h -2.14833 l -0.0161,3.31396 z"
+       id="path21"
+       sodipodi:nodetypes="ccccccccccc"
+       clip-path="url(#clipPath24)"
+       inkscape:path-effect="#path-effect24"
+       inkscape:original-d="m 119.66478,208.70299 v -7.92706 h 3.5357 c 2.35713,0.35518 2.42171,2.454 2.42171,2.454 0,0 -0.14531,1.79207 -1.67906,2.06653 l 1.77592,3.39039 h -0.98482 l -1.904,-3.29781 h -2.14833 l -0.0161,3.31396 z"
+       transform="matrix(0.74537115,0,0,0.74537115,31.875524,35.552794)" /><path
+       style="opacity:1;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:7.33073;stroke-linecap:round;stroke-opacity:0"
+       d="m 128.60806,191.03282 h 0.79986 v -5.80327 h -0.81688 z"
+       id="path25" /><path
+       style="opacity:1;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:7.33073;stroke-linecap:round;stroke-opacity:0"
+       d="m 128.47617,184.7743 0.79985,-1.18703 0.82115,0.004 -0.95303,1.19129 z"
+       id="path26"
+       sodipodi:nodetypes="ccccc" /></g></svg>
+</a>
+  <ul class="nav-links">
+    <li><a href="#experiencia">Experiencia</a></li>
+    <li><a href="#productos">Productos</a></li>
+    <li><a href="#sucursales">Sucursales</a></li>
+    <li><a href="#pedidos">Pedidos</a></li>
+  </ul>
+  <a href="#pedidos" class="nav-cta">Pedí ya</a>
+  <div class="nav-burger" id="burger" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose" aria-label="Cerrar">✕</button>
+  <a href="#experiencia" class="mobile-nav-link">Experiencia</a>
+  <a href="#productos" class="mobile-nav-link">Productos</a>
+  <a href="#sucursales" class="mobile-nav-link">Sucursales</a>
+  <a href="#pedidos" class="mobile-nav-link">Pedidos</a>
+  <a href="https://api.whatsapp.com/send?phone=5493515508646" target="_blank" style="color:var(--gold)">Contacto</a>
+</div>
+
+<!-- ════════════════════════════════════ HERO -->
+<section id="hero">
+  <div class="hero-bg" role="img" aria-label="Medialunas recién horneadas"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Córdoba · Desde 1997</p>
+    <div class="hero-logo-wrap" role="img" aria-label="PERDU Panadería"><svg style="width:min(520px,82vw);height:auto;display:block;margin:0 auto;filter:drop-shadow(0 4px 32px rgba(0,0,0,0.45));" aria-label="PERDU Panadería" viewBox="10 114 195 107" xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.0"><defs
+     id="defs1"><clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath5"><path
+         style="display:none;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         d="m -4.9725784,122.69998 -0.068496,39.59082 h 2.1956839 c 0.8333717,-0.19408 1.0048908,-1.0049 1.0048908,-1.0049 v -37.22976 c 0,0 -0.1188314,-1.05494 -1.123444,-1.32893 z"
+         id="path5"
+         sodipodi:nodetypes="ccccccc" /><path
+         id="lpe_path-effect5"
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         class="powerclip"
+         d="m -30.621012,101.31942 h 54.171886 v 99.8809 h -54.171886 z m 25.6484336,21.38056 -0.068496,39.59082 h 2.1956839 c 0.8333717,-0.19408 1.0048908,-1.0049 1.0048908,-1.0049 v -37.22976 c 0,0 -0.1188314,-1.05494 -1.123444,-1.32893 z" /></clipPath><clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath8"><path
+         style="display:none;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         d="m 106.89991,149.13929 v -15.11484 h 1.96356 c 1.13013,0.32289 1.34709,1.43842 1.34709,1.43842 l -0.0457,11.91835 c 0,0 -0.0691,1.38631 -1.25633,1.75163 z"
+         id="path9"
+         sodipodi:nodetypes="ccccccc" /><path
+         id="lpe_path-effect9"
+         style="fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         class="powerclip"
+         d="m 64.412856,101.2907 h 89.316534 v 99.86119 H 64.412856 Z m 42.487054,47.84859 2.00862,-0.006 c 1.18723,-0.36532 1.25633,-1.75163 1.25633,-1.75163 l 0.0457,-11.91835 c 0,0 -0.21696,-1.11553 -1.34709,-1.43842 h -1.96356 z" /></clipPath><clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath14"><path
+         style="display:none;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         d="m 161.97094,124.29797 0.0114,54.1235 1.98638,-0.0114 c 0.98178,-0.18265 1.26985,-1.3095 1.26985,-1.3095 l 0.0544,-50.86186 c 0,0 -0.11417,-1.74666 -1.49551,-1.91789 z"
+         id="path14"
+         sodipodi:nodetypes="ccccccc" /><path
+         id="lpe_path-effect14"
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         class="powerclip"
+         d="m 136.25362,101.54883 h 55.49875 v 99.56544 h -55.49875 z m 25.71732,22.74914 0.0114,54.1235 1.98638,-0.0114 c 0.98178,-0.18265 1.26985,-1.3095 1.26985,-1.3095 l 0.0544,-50.86186 c 0,0 -0.11417,-1.74666 -1.49551,-1.91789 z" /></clipPath><clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath3"><path
+         style="display:none;opacity:0.282119;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         d="m 59.436844,201.85763 -0.0081,2.52665 h 2.986775 c 0.589891,-0.28189 1.097211,-1.87663 -0.234098,-2.48629 z"
+         id="path4"
+         sodipodi:nodetypes="ccccc" /><path
+         id="lpe_path-effect4"
+         style="opacity:0.282119;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         class="powerclip"
+         d="m 48.386029,190.69558 h 25.793679 v 27.93024 H 48.386029 Z m 11.050815,11.16205 -0.0081,2.52665 h 2.986775 c 0.589891,-0.28189 1.097211,-1.87663 -0.234098,-2.48629 z" /></clipPath><clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath11"><path
+         style="display:none;opacity:0.329801;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         d="m 69.83199,205.37477 h 2.363123 l -1.175853,-3.15083 z"
+         id="path12" /><path
+         id="lpe_path-effect12"
+         style="opacity:0.329801;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         class="powerclip"
+         d="m 55.443398,190.76528 h 31.419967 v 27.8593 H 55.443398 Z m 14.388592,14.60949 h 2.363123 l -1.175853,-3.15083 z" /></clipPath><clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath11-0"><path
+         style="display:none;opacity:0.329801;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         d="m 69.83199,205.37477 h 2.363123 l -1.175853,-3.15083 z"
+         id="path12-2" /><path
+         id="lpe_path-effect12-1"
+         style="opacity:0.329801;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         class="powerclip"
+         d="m 55.443398,190.76528 h 31.419967 v 27.8593 H 55.443398 Z m 14.388592,14.60949 h 2.363123 l -1.175853,-3.15083 z" /></clipPath><clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipath_lpe_path-effect12-9"><path
+         style="display:none;opacity:0.329801;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         d="m 69.83199,205.37477 h 2.363123 l -1.175853,-3.15083 z"
+         id="path16" /><path
+         id="lpe_path-effect12-9"
+         style="opacity:0.329801;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         class="powerclip"
+         d="m 55.443398,190.76528 h 31.419967 v 27.8593 H 55.443398 Z m 14.388592,14.60949 h 2.363123 l -1.175853,-3.15083 z" /></clipPath><clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath18"><path
+         style="display:none;opacity:0.513907;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         d="m 100.46869,201.90606 v 5.63451 h 2.42171 c 2.06653,-0.74266 1.95351,-2.66388 1.95351,-2.66388 0,0 0.2099,-2.06652 -1.95351,-2.98677 z"
+         id="path19"
+         sodipodi:nodetypes="cccccc" /><path
+         id="lpe_path-effect19"
+         style="opacity:0.513907;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         class="powerclip"
+         d="m 89.485629,190.81749 h 26.438241 v 27.803 H 89.485629 Z m 10.983061,11.08857 v 5.63451 h 2.42171 c 2.06653,-0.74266 1.95351,-2.66388 1.95351,-2.66388 0,0 0.2099,-2.06652 -1.95351,-2.98677 z" /></clipPath><clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath24"><path
+         style="display:none;opacity:0.513907;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         d="m 120.72947,201.77929 -0.0161,2.63653 h 2.6257 c 1.64748,-0.0182 1.73165,-2.56274 0,-2.61842 z"
+         id="path24"
+         sodipodi:nodetypes="ccccc" /><path
+         id="lpe_path-effect24"
+         style="opacity:0.513907;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         class="powerclip"
+         d="m 109.74728,190.85843 h 29.0989 v 27.76212 h -29.0989 z m 10.98219,10.92086 -0.0161,2.63653 h 2.6257 c 1.64748,-0.0182 1.73165,-2.56274 0,-2.61842 z" /></clipPath><clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipath_lpe_path-effect12-9-6"><path
+         style="display:none;opacity:0.329801;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         d="m 69.83199,205.37477 h 2.363123 l -1.175853,-3.15083 z"
+         id="path16-7" /><path
+         id="lpe_path-effect12-9-0"
+         style="opacity:0.329801;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         class="powerclip"
+         d="m 55.443398,190.76528 h 31.419967 v 27.8593 H 55.443398 Z m 14.388592,14.60949 h 2.363123 l -1.175853,-3.15083 z" /></clipPath><clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipath_lpe_path-effect12-9-5"><path
+         style="display:none;opacity:0.329801;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         d="m 69.83199,205.37477 h 2.363123 l -1.175853,-3.15083 z"
+         id="path27" /><path
+         id="lpe_path-effect12-9-5"
+         style="opacity:0.329801;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         class="powerclip"
+         d="m 55.443398,190.76528 h 31.419967 v 27.8593 H 55.443398 Z m 14.388592,14.60949 h 2.363123 l -1.175853,-3.15083 z" /></clipPath></defs><g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1"><path
+       style="display:inline;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+       d="m -20.69755,191.28282 h 16.6613662 v -18.69495 c 1.6790525,0.0646 9.1702094,0.41911 13.40013,-2.74526 4.5205258,-3.16437 4.2622098,-9.04105 4.2622098,-9.04105 v -38.29531 c -0.6135,-5.13403 -2.906052,-6.90995 -2.906052,-6.90995 -3.293526,-4.06847 -11.7856565,-4.19763 -11.7856565,-4.19763 l -19.5351295,-0.12916 z"
+       id="path1"
+       sodipodi:nodetypes="cccccccccc"
+       clip-path="url(#clipPath5)"
+       inkscape:path-effect="#path-effect5"
+       inkscape:original-d="m -20.69755,191.28282 h 16.6613662 v -18.69495 c 1.6790525,0.0646 9.1702094,0.41911 13.40013,-2.74526 4.5205258,-3.16437 4.2622098,-9.04105 4.2622098,-9.04105 v -38.29531 c -0.6135,-5.13403 -2.906052,-6.90995 -2.906052,-6.90995 -3.293526,-4.06847 -11.7856565,-4.19763 -11.7856565,-4.19763 l -19.5351295,-0.12916 z"
+       transform="matrix(0.74537115,0,0,0.74537115,31.875524,35.552794)" /><path
+       style="fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:7.33073;stroke-linecap:round;stroke-opacity:0"
+       d="m 44.979685,118.56851 h 39.312479 v 16.72058 h -13.4752 v 7.46097 h 10.73417 v 11.84128 H 70.8651 v 7.46097 h 13.767434 v 16.14864 H 44.843538 v -59.66294 z"
+       id="path6" /><path
+       style="display:inline;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+       d="M 106.87815,191.21824 H 74.330361 v -79.88891 h 33.893809 c 34.88745,-2.00923 34.0655,20.36624 34.0655,20.36624 v 14.61255 c 0.36531,10.22878 -6.02768,14.42989 -6.02768,14.42989 l 6.40903,30.49638 h -32.52895 l -1.10053,-24.58844 -2.19568,0.0323 z"
+       id="path7"
+       clip-path="url(#clipPath8)"
+       inkscape:path-effect="#path-effect9"
+       inkscape:original-d="M 106.87815,191.21824 H 74.330361 v -79.88891 h 33.893809 c 34.88745,-2.00923 34.0655,20.36624 34.0655,20.36624 v 14.61255 c 0.36531,10.22878 -6.02768,14.42989 -6.02768,14.42989 l 6.40903,30.49638 h -32.52895 l -1.10053,-24.58844 -2.19568,0.0323 z"
+       sodipodi:nodetypes="cccccccccccc"
+       transform="matrix(0.74537115,0,0,0.74537115,31.875524,35.552794)" /><path
+       style="display:inline;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+       d="m 146.17112,191.15037 v -79.68404 h 19.58995 c 15.79982,0 16.0738,14.42989 16.0738,14.42989 v 51.00691 c 0,0 -0.39516,14.42206 -16.50761,14.2929 z"
+       id="path10"
+       sodipodi:nodetypes="ccccccc"
+       clip-path="url(#clipPath14)"
+       inkscape:path-effect="#path-effect14"
+       inkscape:original-d="m 146.17112,191.15037 v -79.68404 h 19.58995 c 15.79982,0 16.0738,14.42989 16.0738,14.42989 v 51.00691 c 0,0 -0.39516,14.42206 -16.50761,14.2929 z"
+       transform="matrix(0.74537115,0,0,0.74537115,31.875524,35.552794)" /><path
+       style="fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:7.33073;stroke-linecap:round;stroke-opacity:0"
+       d="m 170.24038,118.75463 h 11.81721 v 50.31339 c 0,0 0.49786,0.91881 1.20399,0.94823 0.36902,0.0154 0.77742,-0.15966 1.23887,-0.94823 v -50.46548 h 11.87484 v 52.40293 c -0.78285,8.64535 -13.25872,8.23114 -13.25872,8.23114 0,0 -12.19374,0.69093 -13.04466,-9.14571 l 0.006,-51.34831 z"
+       id="path15"
+       sodipodi:nodetypes="cccscccccccc" /><path
+       style="opacity:1;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+       d="m 58.351021,208.70826 0.07735,-8.04832 3.572173,0.0342 c 0.921854,0.26906 1.499628,0.60852 1.819559,1.07793 0.508119,0.74553 0.417988,1.62767 0.417988,1.62767 -0.03681,0.53367 -0.354253,1.06567 -0.774694,1.41527 -0.622854,0.5179 -1.417189,0.73095 -1.417189,0.73095 l -2.568611,0.0229 -0.03425,3.13941 z"
+       id="path2"
+       sodipodi:nodetypes="cccscscccc"
+       clip-path="url(#clipPath3)"
+       inkscape:path-effect="#path-effect4"
+       inkscape:original-d="m 58.351021,208.70826 0.07735,-8.04832 3.572173,0.0342 c 0.921854,0.26906 1.499628,0.60852 1.819559,1.07793 0.508119,0.74553 0.417988,1.62767 0.417988,1.62767 -0.03681,0.53367 -0.354253,1.06567 -0.774694,1.41527 -0.622854,0.5179 -1.417189,0.73095 -1.417189,0.73095 l -2.568611,0.0229 -0.03425,3.13941 z"
+       transform="matrix(0.74537115,0,0,0.74537115,31.875524,35.552794)" /><path
+       style="opacity:1;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+       d="m 67.491699,208.6626 2.968173,-7.97982 h 0.947533 l 3.196492,8.00265 h -1.164436 l -0.810541,-2.21472 h -3.025253 l -1.027444,2.2033 z"
+       id="path8"
+       sodipodi:nodetypes="ccccccccc"
+       clip-path="url(#clipPath11)"
+       inkscape:path-effect="#path-effect12"
+       inkscape:original-d="m 67.491699,208.6626 2.968173,-7.97982 h 0.947533 l 3.196492,8.00265 h -1.164436 l -0.810541,-2.21472 h -3.025253 l -1.027444,2.2033 z"
+       transform="matrix(0.74537115,0,0,0.74537115,31.875524,35.552794)" /><path
+       style="fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+       d="m 67.491699,208.6626 2.968173,-7.97982 h 0.947533 l 3.196492,8.00265 h -1.164436 l -0.810541,-2.21472 h -3.025253 l -1.027444,2.2033 z"
+       id="path8-8"
+       sodipodi:nodetypes="ccccccccc"
+       clip-path="url(#clipath_lpe_path-effect12-9)"
+       inkscape:path-effect="#path-effect12-9"
+       inkscape:original-d="m 67.491699,208.6626 2.968173,-7.97982 h 0.947533 l 3.196492,8.00265 h -1.164436 l -0.810541,-2.21472 h -3.025253 l -1.027444,2.2033 z"
+       transform="matrix(0.74537115,0,0,0.74537115,47.63237,35.679574)" /><path
+       style="fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+       d="m 67.491699,208.6626 2.968173,-7.97982 h 0.947533 l 3.196492,8.00265 h -1.164436 l -0.810541,-2.21472 h -3.025253 l -1.027444,2.2033 z"
+       id="path8-8-3"
+       sodipodi:nodetypes="ccccccccc"
+       clip-path="url(#clipath_lpe_path-effect12-9-5)"
+       inkscape:path-effect="#path-effect12-9-5"
+       inkscape:original-d="m 67.491699,208.6626 2.968173,-7.97982 h 0.947533 l 3.196492,8.00265 h -1.164436 l -0.810541,-2.21472 h -3.025253 l -1.027444,2.2033 z"
+       transform="matrix(0.74537115,0,0,0.74537115,82.147394,35.54528)" /><path
+       style="opacity:1;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:7.33073;stroke-linecap:round;stroke-opacity:0"
+       d="m 90.170354,191.14708 v -5.95157 h 0.79302 l 3.40368,4.85025 v -4.85025 h 0.73179 v 5.93942 h -0.81688 l -3.31859,-4.96937 v 5.00341 z"
+       id="path13" /><path
+       style="opacity:1;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+       d="m 99.403134,200.75978 v 7.94321 h 3.261236 c 3.22895,-0.85567 3.34196,-3.79401 3.34196,-3.79401 0,0 0.0161,-3.3581 -3.39039,-4.13305 z"
+       id="path17"
+       sodipodi:nodetypes="cccccc"
+       clip-path="url(#clipPath18)"
+       inkscape:path-effect="#path-effect19"
+       inkscape:original-d="m 99.403134,200.75978 v 7.94321 h 3.261236 c 3.22895,-0.85567 3.34196,-3.79401 3.34196,-3.79401 0,0 0.0161,-3.3581 -3.39039,-4.13305 z"
+       transform="matrix(0.74537115,0,0,0.74537115,31.875524,35.552794)" /><path
+       style="opacity:1;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:7.33073;stroke-linecap:round;stroke-opacity:0"
+       d="m 113.98926,185.17849 v 5.84582 h 3.67598 v -0.6467 h -3.09736 v -2.16134 h 2.72295 v -0.59564 h -2.68891 v -1.72737 h 3.09735 v -0.71477 z"
+       id="path20" /><path
+       style="opacity:1;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+       d="m 119.66478,208.70299 v -7.92706 h 3.5357 c 2.35713,0.35518 2.42171,2.454 2.42171,2.454 0,0 -0.14531,1.79207 -1.67906,2.06653 l 1.77592,3.39039 h -0.98482 l -1.904,-3.29781 h -2.14833 l -0.0161,3.31396 z"
+       id="path21"
+       sodipodi:nodetypes="ccccccccccc"
+       clip-path="url(#clipPath24)"
+       inkscape:path-effect="#path-effect24"
+       inkscape:original-d="m 119.66478,208.70299 v -7.92706 h 3.5357 c 2.35713,0.35518 2.42171,2.454 2.42171,2.454 0,0 -0.14531,1.79207 -1.67906,2.06653 l 1.77592,3.39039 h -0.98482 l -1.904,-3.29781 h -2.14833 l -0.0161,3.31396 z"
+       transform="matrix(0.74537115,0,0,0.74537115,31.875524,35.552794)" /><path
+       style="opacity:1;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:7.33073;stroke-linecap:round;stroke-opacity:0"
+       d="m 128.60806,191.03282 h 0.79986 v -5.80327 h -0.81688 z"
+       id="path25" /><path
+       style="opacity:1;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:7.33073;stroke-linecap:round;stroke-opacity:0"
+       d="m 128.47617,184.7743 0.79985,-1.18703 0.82115,0.004 -0.95303,1.19129 z"
+       id="path26"
+       sodipodi:nodetypes="ccccc" /></g></svg>
+</div>
+    <p class="hero-sub">
+      Masa que respira. Café que despierta. Una panadería que entendió que la experiencia
+      también entra por los ojos, el aroma y el primer sorbo.
+    </p>
+    <div class="hero-actions">
+      <a href="#sucursales" class="btn-primary">Encontrá tu sucursal</a>
+      <a href="#productos" class="btn-outline">Ver lo que hacemos</a>
+    </div>
+  </div>
+  <div class="hero-scroll">scroll</div>
+</section>
+
+<!-- ════════════════════════════════════ MARQUEE -->
+<div class="marquee-strip" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Horneado del día</span><span>·</span>
+    <span>Café de verdad</span><span>·</span>
+    <span>Criollos de hojaldre</span><span>·</span>
+    <span>Donas artesanales</span><span>·</span>
+    <span>12 sucursales en Córdoba</span><span>·</span>
+    <span>Desde 1997</span><span>·</span>
+    <span>Horneado del día</span><span>·</span>
+    <span>Café de verdad</span><span>·</span>
+    <span>Criollos de hojaldre</span><span>·</span>
+    <span>Donas artesanales</span><span>·</span>
+    <span>12 sucursales en Córdoba</span><span>·</span>
+    <span>Desde 1997</span><span>·</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════ EXPERIENCIA -->
+<section id="experiencia">
+  <div class="container">
+    <div class="exp-grid">
+      <div class="exp-img-wrap reveal">
+        <img src="media/cafeespecialidad.webp"
+             alt="Canasta de medialunas recién horneadas">
+        <div class="exp-img-accent"></div>
+      </div>
+      <div class="exp-text reveal reveal-delay-2">
+        <p class="section-label">La experiencia PERDU</p>
+        <h2 class="section-title" style="margin-bottom:1.6rem">
+          No vendemos pan.<br>Vendemos el <em>momento.</em>
+        </h2>
+        <p>
+          Hay algo que pasa cuando abrís la puerta de PERDU. El aire caliente te recibe antes
+          que la persona detrás del mostrador. Ese olor a manteca, a levadura, a horno encendido
+          desde antes de que amaneciera — ese es nuestro saludo.
+        </p>
+        <p>
+          <strong>Cada medialuna sale tibia.</strong> Cada café se prepara para vos, no para la
+          estadística. Y el dulce de leche — ese dulce de leche — todavía lo elegimos como si
+          fuera la primera vez.
+        </p>
+        <p>
+          PERDU no es una cadena. Es una costumbre. La tuya.
+        </p>
+        <div class="exp-stat-row">
+          <div class="exp-stat">
+            <div class="exp-stat-num">+27</div>
+            <div class="exp-stat-label">Años horneando</div>
+          </div>
+          <div class="exp-stat">
+            <div class="exp-stat-num">12</div>
+            <div class="exp-stat-label">Sucursales en Cba</div>
+          </div>
+          <div class="exp-stat">
+            <div class="exp-stat-num">∞</div>
+            <div class="exp-stat-label">Visitas de vuelta</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════ FILOSOFIA -->
+<section id="filosofia">
+  <div class="filosofia-content reveal">
+    <p class="section-label">Quiénes somos</p>
+    <p class="filosofia-quote">
+      "Una panadería que lleva más de <em>veintisiete años</em> en Córdoba no vende pan.<br>
+      Vende confianza. Vende costumbre. Vende mañanas."
+    </p>
+    <p class="filosofia-body">
+      PERDU nació en 1997 con una idea simple: hacer pan de verdad, café de verdad
+      y tratar a cada cliente como si fuera el primero del día. Hoy tenemos doce sucursales
+      en toda la ciudad, pero esa idea no cambió. Crecer no nos hizo genéricos.
+      <br><br>
+      Somos tu panadería de barrio — con doce barrios.
+    </p>
+    <div class="hero-actions" style="justify-content:center">
+      <a href="https://www.instagram.com/perdupanaderia/" target="_blank" class="btn-outline">Seguinos en Instagram</a>
+    </div>
+    <p class="filosofia-since" style="margin-top:2.5rem">PERDU PANADERÍA · EST. 1997 · CÓRDOBA, ARGENTINA</p>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════ PRODUCTOS -->
+<section id="productos">
+  <div class="container">
+    <div class="productos-header reveal">
+      <div>
+        <p class="section-label">Productos estrella</p>
+        <h2 class="section-title">Hecho para <em>repetir.</em></h2>
+      </div>
+    </div>
+    <div class="productos-grid">
+
+      <!-- Criollos -->
+      <div class="prod-card reveal">
+        <div class="prod-img">
+          <div class="prod-tag">Clásico</div>
+          <img src="media/criollosdulces.webp" alt="Criollos de hojaldre PERDU">
+        </div>
+        <div class="prod-body">
+          <div class="prod-name">Criollos de Hojaldre</div>
+          <p class="prod-desc">
+            Láminas de masa que se desarman en la boca. Hechos con manteca real,
+            horneados hasta ese punto exacto entre dorado y caramelizado. El producto
+            por el que los clientes vuelven sin necesitar excusa.
+          </p>
+        </div>
+      </div>
+
+      <!-- Donas -->
+      <div class="prod-card reveal reveal-delay-1">
+        <div class="prod-img">
+          <div class="prod-tag">Favorito</div>
+          <img src="media/medialunas2.webp" alt="Donas PERDU">
+        </div>
+        <div class="prod-body">
+          <div class="prod-name">Medialunas</div>
+          <p class="prod-desc">
+            Masa blanda, aérea, que cede al primer apriete. Rellenas con dulce de leche
+            seleccionado — cremoso, profundo, sin atajos. Hay quienes dicen que son
+            las mejores de Córdoba. Nosotros les creemos.
+          </p>
+        </div>
+      </div>
+
+      <!-- Café -->
+      <div class="prod-card reveal reveal-delay-2">
+        <div class="prod-img">
+          <div class="prod-tag">Ritual</div>
+          <img src="media/cafe.webp" alt="Café PERDU">
+        </div>
+        <div class="prod-body">
+          <div class="prod-name">Café</div>
+          <p class="prod-desc">
+            Intenso, limpio, sin amargura innecesaria. Servido caliente de verdad,
+            con leche que se calienta — no se hierve. El café de PERDU no es el
+            complemento. Muchas veces, es el motivo.
+          </p>
+        </div>
+      </div>
+
+      <!-- Pasteles -->
+      <div class="prod-card reveal">
+        <div class="prod-img">
+          <div class="prod-tag">Variedad</div>
+          <img src="media/cosasdulces.webp" alt="Pasteles PERDU">
+        </div>
+        <div class="prod-body">
+          <div class="prod-name">Pasteles del Día</div>
+          <p class="prod-desc">
+            Facturas, vigilantes, cañoncitos, palmeritas — la vidriera de PERDU cambia
+            pero nunca defrauda. Cada pieza horneada esa mañana, lista para acompañar
+            el primer café o el merienda de las seis.
+          </p>
+        </div>
+      </div>
+
+      <!-- Pan de mesa -->
+      <div class="prod-card reveal reveal-delay-1">
+        <div class="prod-img">
+          <div class="prod-tag">Panadería</div>
+          <img src="media/panmasamadre3.webp" alt="Surtido de panadería PERDU">
+        </div>
+        <div class="prod-body">
+          <div class="prod-name">Surtido de Panadería</div>
+          <p class="prod-desc">
+            Pan de mesa, lactal, pan de campo, grisines. Lo que une una mesa en Argentina.
+            Hecho con harina de calidad, cocción justa, sin apuros. El pan de cada día
+            que merece ese nombre.
+          </p>
+        </div>
+      </div>
+
+      <!-- Croissants especiales -->
+      <div class="prod-card reveal reveal-delay-2">
+        <div class="prod-img">
+          <div class="prod-tag">Artesanal</div>
+          <img src="media/panmasamadre2.webp" alt="Croissants especiales PERDU">
+        </div>
+        <div class="prod-body">
+          <div class="prod-name">Pan de Masa Madre</div>
+          <p class="prod-desc">
+            El hojaldre en su forma más francesa, adaptado al paladar cordobés.
+            Con almendras, con chocolate, con crema. Para los que buscan algo más
+            que lo de siempre — sin abandonar lo artesanal.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════ SUCURSALES -->
+<section id="sucursales">
+  <div class="container">
+    <div class="sucursales-intro reveal">
+      <p class="section-label">Dónde encontrarnos</p>
+      <h2 class="section-title">12 razones para <em>no viajar lejos.</em></h2>
+      <p>Probablemente haya un PERDU a menos de lo que pensás.</p>
+    </div>
+    <div class="suc-grid reveal">
+      <div class="suc-item">
+        <div class="suc-num">01</div>
+        <div class="suc-addr">
+          <a href="https://maps.app.goo.gl/cE5uP6AHhjwe37cc7" target="_blank">Rondeau 278</a>
+          <div class="suc-tag">Centro</div>
+          <div class="suc-hours">Lun a Sáb 7:00–21:00<br>Dom 7:30–20:30</div>
+        </div>
+      </div>
+      <div class="suc-item">
+        <div class="suc-num">02</div>
+        <div class="suc-addr">
+          <a href="https://maps.app.goo.gl/SAaRV354cETNP7GMA" target="_blank">Fray Mamerto Esquiú &amp; Catamarca</a>
+          <div class="suc-tag">Centro</div>
+          <div class="suc-hours">Lun a Sáb 7:00–21:00<br>Dom 7:30–20:30</div>
+        </div>
+      </div>
+      <div class="suc-item">
+        <div class="suc-num">03</div>
+        <div class="suc-addr">
+          <a href="https://maps.app.goo.gl/7jtbVp4WyNkuRzer8" target="_blank">9 de Julio 808</a>
+          <div class="suc-tag">Alberdi</div>
+          <div class="suc-hours">Lun a Sáb 7:00–21:00<br>Dom 7:30–20:30</div>
+        </div>
+      </div>
+      <div class="suc-item">
+        <div class="suc-num">04</div>
+        <div class="suc-addr">
+          <a href="https://maps.app.goo.gl/1oCcwdj6fy3VPwjc8" target="_blank">Río Negro &amp; Santa Ana</a>
+          <div class="suc-tag">Nueva Córdoba</div>
+          <div class="suc-hours">Lun a Sáb 7:00–21:00<br>Dom 7:30–20:30</div>
+        </div>
+      </div>
+      <div class="suc-item">
+        <div class="suc-num">05</div>
+        <div class="suc-addr">
+          <a href="https://maps.app.goo.gl/4R5p9wJEfmmm3q4m7" target="_blank">Santa Rosa 700</a>
+          <div class="suc-tag">Alberdi</div>
+          <div class="suc-hours">Lun a Vie 7:00–21:00<br>Sáb 7:00–21:00</div>
+        </div>
+      </div>
+      <div class="suc-item">
+        <div class="suc-num">06</div>
+        <div class="suc-addr">
+          <a href="https://maps.app.goo.gl/wkDAPpHk16Z7Xxdq9" target="_blank">Lima 1611</a>
+          <div class="suc-tag">Villa Cabrera</div>
+          <div class="suc-hours">Lun a Sáb 7:00–21:00<br>Dom 7:30–20:30</div>
+        </div>
+      </div>
+      <div class="suc-item">
+        <div class="suc-num">07</div>
+        <div class="suc-addr">
+          <a href="https://maps.app.goo.gl/aNVuawhYfEDJAKQ56" target="_blank">Deán Funes 611</a>
+          <div class="suc-tag">Centro</div>
+          <div class="suc-hours">Lun a Sáb 7:00–21:00<br>Dom 7:30–20:30</div>
+        </div>
+      </div>
+      <div class="suc-item">
+        <div class="suc-num">08</div>
+        <div class="suc-addr">
+          <a href="https://maps.app.goo.gl/SLdGZScJLNG9Jkzk7" target="_blank">Blvd. San Juan 309</a>
+          <div class="suc-tag">Nueva Córdoba</div>
+          <div class="suc-hours">Lun a Sáb 7:00–21:00<br>Dom 7:30–20:30</div>
+        </div>
+      </div>
+      <div class="suc-item">
+        <div class="suc-num">09</div>
+        <div class="suc-addr">
+          <a href="https://maps.app.goo.gl/WCDmuUokBc2H3pxw7" target="_blank">Lavalleja 2063</a>
+          <div class="suc-tag">Parque Vélez</div>
+          <div class="suc-hours">Lun a Sáb 7:00–21:00<br>Dom 7:30–20:30</div>
+        </div>
+      </div>
+      <div class="suc-item">
+        <div class="suc-num">10</div>
+        <div class="suc-addr">
+          <a href="https://maps.app.goo.gl/Gp4zHVMRwavPsdNG9" target="_blank">Av. Duarte Quirós 1790</a>
+          <div class="suc-tag">Alberdi Oeste</div>
+          <div class="suc-hours">Lun a Sáb 7:00–21:00<br>Dom 7:30–20:30</div>
+        </div>
+      </div>
+      <div class="suc-item">
+        <div class="suc-num">11</div>
+        <div class="suc-addr">
+          <a href="https://maps.app.goo.gl/tkSR9bwnARrDTUq87" target="_blank">Av. Fuerza Aérea Argentina 2000</a>
+          <div class="suc-tag">Cerro de las Rosas</div>
+          <div class="suc-hours">Lun a Sáb 7:00–21:00<br>Dom 7:30–20:30</div>
+        </div>
+      </div>
+      <div class="suc-item">
+        <div class="suc-num">12</div>
+        <div class="suc-addr">
+          <a href="https://maps.app.goo.gl/7G3XN5ovpKfCMSzt7" target="_blank">Rodríguez Peña &amp; José M. Bedoya</a>
+          <div class="suc-tag">Argüello</div>
+          <div class="suc-hours">Lun a Sáb 7:00–21:00<br>Dom 7:30–20:30</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════ PEDIDOS -->
+<section id="pedidos">
+  <div class="pedidos-inner reveal">
+    <p class="section-label">Pedidos online</p>
+    <h2 class="section-title" style="margin-bottom:1rem">PERDU en tu <em>puerta.</em></h2>
+    <p>
+      Pedí desde donde estés. Delivery disponible a través de las plataformas que ya usás,
+      o escribinos directamente por WhatsApp.
+    </p>
+    <div class="pedidos-btns">
+      <a href="https://www.pedidosya.com.ar/restaurantes/cordoba/perdu-panaderia---bv-san-juan-menu?search=perdu%20"
+         target="_blank" class="btn-delivery btn-py">
+        🛵&nbsp; PedidosYa
+      </a>
+      <a href="https://www.rappi.com.ar/restaurantes/216835-perdu-panaderias"
+         target="_blank" class="btn-delivery btn-rappi">
+        🏍&nbsp; Rappi
+      </a>
+      <a href="https://api.whatsapp.com/send?phone=5493515508646"
+         target="_blank" class="btn-delivery btn-wa">
+        💬&nbsp; WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════ REVIEWS -->
+<section id="reviews">
+  <div class="container">
+    <div class="reviews-intro reveal">
+      <p class="section-label">Lo que dicen</p>
+      <h2 class="section-title">Voces <em>reales.</em></h2>
+      <p>No armamos estas reseñas. Las recibimos. Y cada una nos recuerda por qué vale la pena hacerlo bien.</p>
+    </div>
+    <div class="reviews-grid">
+      <div class="rev-card reveal">
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">"El café es increíble. No exagero cuando digo que cambió mis mañanas. Empecé a ir por el pan y me quedé por el ritual completo."</p>
+        <p class="rev-author">— Cliente habitual, sucursal San Juan</p>
+      </div>
+      <div class="rev-card reveal reveal-delay-1">
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">"Los criollos de hojaldre son otro nivel. Esa textura, ese sabor a manteca real... No encontré nada igual en Córdoba. Vengo desde el otro extremo de la ciudad."</p>
+        <p class="rev-author">— Cliente, sucursal Rondeau</p>
+      </div>
+      <div class="rev-card reveal reveal-delay-2">
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">"La atención es súper amable. Siempre me reciben bien, me dan a probar si hay algo nuevo. Eso no se consigue en todos lados."</p>
+        <p class="rev-author">— Cliente frecuente, sucursal 9 de Julio</p>
+      </div>
+      <div class="rev-card reveal">
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">"Las donas con dulce de leche son una locura. Masa blandísima, relleno generoso. Las pido para el trabajo y duran cinco minutos."</p>
+        <p class="rev-author">— Cliente, pedido online</p>
+      </div>
+      <div class="rev-card reveal reveal-delay-1">
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">"Ambiente increíble, todo lo que está bien. Es de esas panaderías donde querés quedarte un rato más de lo planeado."</p>
+        <p class="rev-author">— Cliente, sucursal Duarte Quirós</p>
+      </div>
+      <div class="rev-card reveal reveal-delay-2">
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-text">"Riquísimo todo. El café es verdadero café, no agua con colorante. Y la variedad es enorme. Un lugar para volver siempre."</p>
+        <p class="rev-author">— Cliente, sucursal Deán Funes</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════ DISTINTOS -->
+<section id="distintos">
+  <div class="container">
+    <div class="distintos-intro reveal">
+      <p class="section-label">Lo que nos hace distintos</p>
+      <h2 class="section-title">Misma pasión.<br><em>Estándares más altos.</em></h2>
+      <p>
+        Después de décadas en Córdoba, aprendimos que la confianza no se declama — se cuida.
+        Por eso cambiamos el modo en que controlamos cada producto, cada turno, cada lote.
+      </p>
+    </div>
+    <div class="distintos-cards">
+      <div class="dist-card reveal">
+        <div class="dist-icon">🌅</div>
+        <h3>Horneado del día, siempre</h3>
+        <p>Sin producto viejo. Sin relleno de exhibición. Lo que ves en el mostrador salió del horno ese día. Si no está fresco, no está.</p>
+      </div>
+      <div class="dist-card reveal reveal-delay-1">
+        <div class="dist-icon">⚗️</div>
+        <h3>Control de ingredientes</h3>
+        <p>Seleccionamos cada proveedor. La manteca, la harina, el dulce de leche — cada uno pasa por nuestra aprobación antes de llegar a la masa.</p>
+      </div>
+      <div class="dist-card reveal reveal-delay-2">
+        <div class="dist-icon">☕</div>
+        <h3>Café que no miente</h3>
+        <p>Granos de origen, extracción precisa, leche que no se quema. El café de PERDU es el motivo por el que muchos no pueden desayunar en otro lado.</p>
+      </div>
+      <div class="dist-card reveal reveal-delay-3">
+        <div class="dist-icon">🧁</div>
+        <h3>Recetas propias, no franquiciadas</h3>
+        <p>Nuestros criollos de hojaldre y nuestras donas no vienen de un manual global. Vienen de años de prueba, error y corrección.</p>
+      </div>
+      <div class="dist-card reveal reveal-delay-1">
+        <div class="dist-icon">🔄</div>
+        <h3>Rotación constante</h3>
+        <p>Revisamos el stock en cada turno. Si algo no cumple el estándar, sale. Así de simple.</p>
+      </div>
+      <div class="dist-card reveal reveal-delay-2">
+        <div class="dist-icon">🤝</div>
+        <h3>Atención que se nota</h3>
+        <p>El mostrador de PERDU no es un trámite. Es parte de la experiencia. Entrenamos a nuestro equipo para que también lo entienda.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════ CTA FINAL -->
+<section id="cta-final">
+  <div class="cta-final-content reveal">
+    <p class="section-label">¿Qué esperás?</p>
+    <h2 class="cta-final-title">
+      El café está<br><em>caliente.</em>
+    </h2>
+    <p class="cta-final-sub">
+      No hace falta una ocasión especial para ir a PERDU.
+      El martes a las 8 de la mañana alcanza.
+    </p>
+    <div class="hero-actions" style="justify-content:center">
+      <a href="#sucursales" class="btn-primary">Encontrá tu PERDU</a>
+      <a href="https://www.instagram.com/perdupanaderia/" target="_blank" class="btn-outline">@perdupanaderia</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════ SOCIAL STRIP -->
+<div class="social-strip">
+  <a href="https://www.instagram.com/perdupanaderia/" target="_blank" class="social-link">Instagram</a>
+  <span style="color:rgba(200,136,42,.3)">·</span>
+  <a href="https://www.facebook.com/perdupanaderia/" target="_blank" class="social-link">Facebook</a>
+  <span style="color:rgba(200,136,42,.3)">·</span>
+  <a href="https://api.whatsapp.com/send?phone=5493515508646" target="_blank" class="social-link">WhatsApp</a>
+  <span style="color:rgba(200,136,42,.3)">·</span>
+  <a href="#sucursales" class="social-link">Todas las sucursales</a>
+</div>
+
+<!-- ════════════════════════════════════ FOOTER -->
+<footer>
+  <div>
+    <a href="#hero"><svg style="height:30px;width:auto;display:block;opacity:0.85;" aria-label="PERDU Panadería" viewBox="10 114 195 107" xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.0"><defs
+     id="defs1"><clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath5"><path
+         style="display:none;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         d="m -4.9725784,122.69998 -0.068496,39.59082 h 2.1956839 c 0.8333717,-0.19408 1.0048908,-1.0049 1.0048908,-1.0049 v -37.22976 c 0,0 -0.1188314,-1.05494 -1.123444,-1.32893 z"
+         id="path5"
+         sodipodi:nodetypes="ccccccc" /><path
+         id="lpe_path-effect5"
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         class="powerclip"
+         d="m -30.621012,101.31942 h 54.171886 v 99.8809 h -54.171886 z m 25.6484336,21.38056 -0.068496,39.59082 h 2.1956839 c 0.8333717,-0.19408 1.0048908,-1.0049 1.0048908,-1.0049 v -37.22976 c 0,0 -0.1188314,-1.05494 -1.123444,-1.32893 z" /></clipPath><clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath8"><path
+         style="display:none;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         d="m 106.89991,149.13929 v -15.11484 h 1.96356 c 1.13013,0.32289 1.34709,1.43842 1.34709,1.43842 l -0.0457,11.91835 c 0,0 -0.0691,1.38631 -1.25633,1.75163 z"
+         id="path9"
+         sodipodi:nodetypes="ccccccc" /><path
+         id="lpe_path-effect9"
+         style="fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         class="powerclip"
+         d="m 64.412856,101.2907 h 89.316534 v 99.86119 H 64.412856 Z m 42.487054,47.84859 2.00862,-0.006 c 1.18723,-0.36532 1.25633,-1.75163 1.25633,-1.75163 l 0.0457,-11.91835 c 0,0 -0.21696,-1.11553 -1.34709,-1.43842 h -1.96356 z" /></clipPath><clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath14"><path
+         style="display:none;fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         d="m 161.97094,124.29797 0.0114,54.1235 1.98638,-0.0114 c 0.98178,-0.18265 1.26985,-1.3095 1.26985,-1.3095 l 0.0544,-50.86186 c 0,0 -0.11417,-1.74666 -1.49551,-1.91789 z"
+         id="path14"
+         sodipodi:nodetypes="ccccccc" /><path
+         id="lpe_path-effect14"
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         class="powerclip"
+         d="m 136.25362,101.54883 h 55.49875 v 99.56544 h -55.49875 z m 25.71732,22.74914 0.0114,54.1235 1.98638,-0.0114 c 0.98178,-0.18265 1.26985,-1.3095 1.26985,-1.3095 l 0.0544,-50.86186 c 0,0 -0.11417,-1.74666 -1.49551,-1.91789 z" /></clipPath><clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath3"><path
+         style="display:none;opacity:0.282119;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         d="m 59.436844,201.85763 -0.0081,2.52665 h 2.986775 c 0.589891,-0.28189 1.097211,-1.87663 -0.234098,-2.48629 z"
+         id="path4"
+         sodipodi:nodetypes="ccccc" /><path
+         id="lpe_path-effect4"
+         style="opacity:0.282119;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         class="powerclip"
+         d="m 48.386029,190.69558 h 25.793679 v 27.93024 H 48.386029 Z m 11.050815,11.16205 -0.0081,2.52665 h 2.986775 c 0.589891,-0.28189 1.097211,-1.87663 -0.234098,-2.48629 z" /></clipPath><clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath11"><path
+         style="display:none;opacity:0.329801;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         d="m 69.83199,205.37477 h 2.363123 l -1.175853,-3.15083 z"
+         id="path12" /><path
+         id="lpe_path-effect12"
+         style="opacity:0.329801;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         class="powerclip"
+         d="m 55.443398,190.76528 h 31.419967 v 27.8593 H 55.443398 Z m 14.388592,14.60949 h 2.363123 l -1.175853,-3.15083 z" /></clipPath><clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath11-0"><path
+         style="display:none;opacity:0.329801;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         d="m 69.83199,205.37477 h 2.363123 l -1.175853,-3.15083 z"
+         id="path12-2" /><path
+         id="lpe_path-effect12-1"
+         style="opacity:0.329801;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         class="powerclip"
+         d="m 55.443398,190.76528 h 31.419967 v 27.8593 H 55.443398 Z m 14.388592,14.60949 h 2.363123 l -1.175853,-3.15083 z" /></clipPath><clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipath_lpe_path-effect12-9"><path
+         style="display:none;opacity:0.329801;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         d="m 69.83199,205.37477 h 2.363123 l -1.175853,-3.15083 z"
+         id="path16" /><path
+         id="lpe_path-effect12-9"
+         style="opacity:0.329801;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         class="powerclip"
+         d="m 55.443398,190.76528 h 31.419967 v 27.8593 H 55.443398 Z m 14.388592,14.60949 h 2.363123 l -1.175853,-3.15083 z" /></clipPath><clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath18"><path
+         style="display:none;opacity:0.513907;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         d="m 100.46869,201.90606 v 5.63451 h 2.42171 c 2.06653,-0.74266 1.95351,-2.66388 1.95351,-2.66388 0,0 0.2099,-2.06652 -1.95351,-2.98677 z"
+         id="path19"
+         sodipodi:nodetypes="cccccc" /><path
+         id="lpe_path-effect19"
+         style="opacity:0.513907;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         class="powerclip"
+         d="m 89.485629,190.81749 h 26.438241 v 27.803 H 89.485629 Z m 10.983061,11.08857 v 5.63451 h 2.42171 c 2.06653,-0.74266 1.95351,-2.66388 1.95351,-2.66388 0,0 0.2099,-2.06652 -1.95351,-2.98677 z" /></clipPath><clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath24"><path
+         style="display:none;opacity:0.513907;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         d="m 120.72947,201.77929 -0.0161,2.63653 h 2.6257 c 1.64748,-0.0182 1.73165,-2.56274 0,-2.61842 z"
+         id="path24"
+         sodipodi:nodetypes="ccccc" /><path
+         id="lpe_path-effect24"
+         style="opacity:0.513907;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         class="powerclip"
+         d="m 109.74728,190.85843 h 29.0989 v 27.76212 h -29.0989 z m 10.98219,10.92086 -0.0161,2.63653 h 2.6257 c 1.64748,-0.0182 1.73165,-2.56274 0,-2.61842 z" /></clipPath><clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipath_lpe_path-effect12-9-6"><path
+         style="display:none;opacity:0.329801;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         d="m 69.83199,205.37477 h 2.363123 l -1.175853,-3.15083 z"
+         id="path16-7" /><path
+         id="lpe_path-effect12-9-0"
+         style="opacity:0.329801;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         class="powerclip"
+         d="m 55.443398,190.76528 h 31.419967 v 27.8593 H 55.443398 Z m 14.388592,14.60949 h 2.363123 l -1.175853,-3.15083 z" /></clipPath><clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipath_lpe_path-effect12-9-5"><path
+         style="display:none;opacity:0.329801;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         d="m 69.83199,205.37477 h 2.363123 l -1.175853,-3.15083 z"
+         id="path27" /><path
+         id="lpe_path-effect12-9-5"
+         style="opacity:0.329801;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+         class="powerclip"
+         d="m 55.443398,190.76528 h 31.419967 v 27.8593 H 55.443398 Z m 14.388592,14.60949 h 2.363123 l -1.175853,-3.15083 z" /></clipPath></defs><g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1"><path
+       style="display:inline;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+       d="m -20.69755,191.28282 h 16.6613662 v -18.69495 c 1.6790525,0.0646 9.1702094,0.41911 13.40013,-2.74526 4.5205258,-3.16437 4.2622098,-9.04105 4.2622098,-9.04105 v -38.29531 c -0.6135,-5.13403 -2.906052,-6.90995 -2.906052,-6.90995 -3.293526,-4.06847 -11.7856565,-4.19763 -11.7856565,-4.19763 l -19.5351295,-0.12916 z"
+       id="path1"
+       sodipodi:nodetypes="cccccccccc"
+       clip-path="url(#clipPath5)"
+       inkscape:path-effect="#path-effect5"
+       inkscape:original-d="m -20.69755,191.28282 h 16.6613662 v -18.69495 c 1.6790525,0.0646 9.1702094,0.41911 13.40013,-2.74526 4.5205258,-3.16437 4.2622098,-9.04105 4.2622098,-9.04105 v -38.29531 c -0.6135,-5.13403 -2.906052,-6.90995 -2.906052,-6.90995 -3.293526,-4.06847 -11.7856565,-4.19763 -11.7856565,-4.19763 l -19.5351295,-0.12916 z"
+       transform="matrix(0.74537115,0,0,0.74537115,31.875524,35.552794)" /><path
+       style="fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:7.33073;stroke-linecap:round;stroke-opacity:0"
+       d="m 44.979685,118.56851 h 39.312479 v 16.72058 h -13.4752 v 7.46097 h 10.73417 v 11.84128 H 70.8651 v 7.46097 h 13.767434 v 16.14864 H 44.843538 v -59.66294 z"
+       id="path6" /><path
+       style="display:inline;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+       d="M 106.87815,191.21824 H 74.330361 v -79.88891 h 33.893809 c 34.88745,-2.00923 34.0655,20.36624 34.0655,20.36624 v 14.61255 c 0.36531,10.22878 -6.02768,14.42989 -6.02768,14.42989 l 6.40903,30.49638 h -32.52895 l -1.10053,-24.58844 -2.19568,0.0323 z"
+       id="path7"
+       clip-path="url(#clipPath8)"
+       inkscape:path-effect="#path-effect9"
+       inkscape:original-d="M 106.87815,191.21824 H 74.330361 v -79.88891 h 33.893809 c 34.88745,-2.00923 34.0655,20.36624 34.0655,20.36624 v 14.61255 c 0.36531,10.22878 -6.02768,14.42989 -6.02768,14.42989 l 6.40903,30.49638 h -32.52895 l -1.10053,-24.58844 -2.19568,0.0323 z"
+       sodipodi:nodetypes="cccccccccccc"
+       transform="matrix(0.74537115,0,0,0.74537115,31.875524,35.552794)" /><path
+       style="display:inline;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+       d="m 146.17112,191.15037 v -79.68404 h 19.58995 c 15.79982,0 16.0738,14.42989 16.0738,14.42989 v 51.00691 c 0,0 -0.39516,14.42206 -16.50761,14.2929 z"
+       id="path10"
+       sodipodi:nodetypes="ccccccc"
+       clip-path="url(#clipPath14)"
+       inkscape:path-effect="#path-effect14"
+       inkscape:original-d="m 146.17112,191.15037 v -79.68404 h 19.58995 c 15.79982,0 16.0738,14.42989 16.0738,14.42989 v 51.00691 c 0,0 -0.39516,14.42206 -16.50761,14.2929 z"
+       transform="matrix(0.74537115,0,0,0.74537115,31.875524,35.552794)" /><path
+       style="fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:7.33073;stroke-linecap:round;stroke-opacity:0"
+       d="m 170.24038,118.75463 h 11.81721 v 50.31339 c 0,0 0.49786,0.91881 1.20399,0.94823 0.36902,0.0154 0.77742,-0.15966 1.23887,-0.94823 v -50.46548 h 11.87484 v 52.40293 c -0.78285,8.64535 -13.25872,8.23114 -13.25872,8.23114 0,0 -12.19374,0.69093 -13.04466,-9.14571 l 0.006,-51.34831 z"
+       id="path15"
+       sodipodi:nodetypes="cccscccccccc" /><path
+       style="opacity:1;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+       d="m 58.351021,208.70826 0.07735,-8.04832 3.572173,0.0342 c 0.921854,0.26906 1.499628,0.60852 1.819559,1.07793 0.508119,0.74553 0.417988,1.62767 0.417988,1.62767 -0.03681,0.53367 -0.354253,1.06567 -0.774694,1.41527 -0.622854,0.5179 -1.417189,0.73095 -1.417189,0.73095 l -2.568611,0.0229 -0.03425,3.13941 z"
+       id="path2"
+       sodipodi:nodetypes="cccscscccc"
+       clip-path="url(#clipPath3)"
+       inkscape:path-effect="#path-effect4"
+       inkscape:original-d="m 58.351021,208.70826 0.07735,-8.04832 3.572173,0.0342 c 0.921854,0.26906 1.499628,0.60852 1.819559,1.07793 0.508119,0.74553 0.417988,1.62767 0.417988,1.62767 -0.03681,0.53367 -0.354253,1.06567 -0.774694,1.41527 -0.622854,0.5179 -1.417189,0.73095 -1.417189,0.73095 l -2.568611,0.0229 -0.03425,3.13941 z"
+       transform="matrix(0.74537115,0,0,0.74537115,31.875524,35.552794)" /><path
+       style="opacity:1;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+       d="m 67.491699,208.6626 2.968173,-7.97982 h 0.947533 l 3.196492,8.00265 h -1.164436 l -0.810541,-2.21472 h -3.025253 l -1.027444,2.2033 z"
+       id="path8"
+       sodipodi:nodetypes="ccccccccc"
+       clip-path="url(#clipPath11)"
+       inkscape:path-effect="#path-effect12"
+       inkscape:original-d="m 67.491699,208.6626 2.968173,-7.97982 h 0.947533 l 3.196492,8.00265 h -1.164436 l -0.810541,-2.21472 h -3.025253 l -1.027444,2.2033 z"
+       transform="matrix(0.74537115,0,0,0.74537115,31.875524,35.552794)" /><path
+       style="fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+       d="m 67.491699,208.6626 2.968173,-7.97982 h 0.947533 l 3.196492,8.00265 h -1.164436 l -0.810541,-2.21472 h -3.025253 l -1.027444,2.2033 z"
+       id="path8-8"
+       sodipodi:nodetypes="ccccccccc"
+       clip-path="url(#clipath_lpe_path-effect12-9)"
+       inkscape:path-effect="#path-effect12-9"
+       inkscape:original-d="m 67.491699,208.6626 2.968173,-7.97982 h 0.947533 l 3.196492,8.00265 h -1.164436 l -0.810541,-2.21472 h -3.025253 l -1.027444,2.2033 z"
+       transform="matrix(0.74537115,0,0,0.74537115,47.63237,35.679574)" /><path
+       style="fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+       d="m 67.491699,208.6626 2.968173,-7.97982 h 0.947533 l 3.196492,8.00265 h -1.164436 l -0.810541,-2.21472 h -3.025253 l -1.027444,2.2033 z"
+       id="path8-8-3"
+       sodipodi:nodetypes="ccccccccc"
+       clip-path="url(#clipath_lpe_path-effect12-9-5)"
+       inkscape:path-effect="#path-effect12-9-5"
+       inkscape:original-d="m 67.491699,208.6626 2.968173,-7.97982 h 0.947533 l 3.196492,8.00265 h -1.164436 l -0.810541,-2.21472 h -3.025253 l -1.027444,2.2033 z"
+       transform="matrix(0.74537115,0,0,0.74537115,82.147394,35.54528)" /><path
+       style="opacity:1;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:7.33073;stroke-linecap:round;stroke-opacity:0"
+       d="m 90.170354,191.14708 v -5.95157 h 0.79302 l 3.40368,4.85025 v -4.85025 h 0.73179 v 5.93942 h -0.81688 l -3.31859,-4.96937 v 5.00341 z"
+       id="path13" /><path
+       style="opacity:1;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+       d="m 99.403134,200.75978 v 7.94321 h 3.261236 c 3.22895,-0.85567 3.34196,-3.79401 3.34196,-3.79401 0,0 0.0161,-3.3581 -3.39039,-4.13305 z"
+       id="path17"
+       sodipodi:nodetypes="cccccc"
+       clip-path="url(#clipPath18)"
+       inkscape:path-effect="#path-effect19"
+       inkscape:original-d="m 99.403134,200.75978 v 7.94321 h 3.261236 c 3.22895,-0.85567 3.34196,-3.79401 3.34196,-3.79401 0,0 0.0161,-3.3581 -3.39039,-4.13305 z"
+       transform="matrix(0.74537115,0,0,0.74537115,31.875524,35.552794)" /><path
+       style="opacity:1;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:7.33073;stroke-linecap:round;stroke-opacity:0"
+       d="m 113.98926,185.17849 v 5.84582 h 3.67598 v -0.6467 h -3.09736 v -2.16134 h 2.72295 v -0.59564 h -2.68891 v -1.72737 h 3.09735 v -0.71477 z"
+       id="path20" /><path
+       style="opacity:1;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:9.83501;stroke-linecap:round;stroke-opacity:0"
+       d="m 119.66478,208.70299 v -7.92706 h 3.5357 c 2.35713,0.35518 2.42171,2.454 2.42171,2.454 0,0 -0.14531,1.79207 -1.67906,2.06653 l 1.77592,3.39039 h -0.98482 l -1.904,-3.29781 h -2.14833 l -0.0161,3.31396 z"
+       id="path21"
+       sodipodi:nodetypes="ccccccccccc"
+       clip-path="url(#clipPath24)"
+       inkscape:path-effect="#path-effect24"
+       inkscape:original-d="m 119.66478,208.70299 v -7.92706 h 3.5357 c 2.35713,0.35518 2.42171,2.454 2.42171,2.454 0,0 -0.14531,1.79207 -1.67906,2.06653 l 1.77592,3.39039 h -0.98482 l -1.904,-3.29781 h -2.14833 l -0.0161,3.31396 z"
+       transform="matrix(0.74537115,0,0,0.74537115,31.875524,35.552794)" /><path
+       style="opacity:1;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:7.33073;stroke-linecap:round;stroke-opacity:0"
+       d="m 128.60806,191.03282 h 0.79986 v -5.80327 h -0.81688 z"
+       id="path25" /><path
+       style="opacity:1;fill:#ffffff;fill-rule:evenodd;stroke:#000000;stroke-width:7.33073;stroke-linecap:round;stroke-opacity:0"
+       d="m 128.47617,184.7743 0.79985,-1.18703 0.82115,0.004 -0.95303,1.19129 z"
+       id="path26"
+       sodipodi:nodetypes="ccccc" /></g></svg>
+</a>
+    <div class="footer-sub" style="margin-top:.4rem">Panadería · Córdoba, Argentina</div>
+  </div>
+  <div style="text-align:center">
+    <p class="footer-copy">panadería de calidad y café de verdad.</p>
+  </div>
+  <div style="text-align:right">
+    <p class="footer-copy">© 2026 PERDU Panadería</p>
+    <p class="footer-sub">Est. 1997</p>
+  </div>
+</footer>
+
+<script>
+// Nav scroll
+const navbar=document.getElementById('navbar');
+window.addEventListener('scroll',()=>{
+  navbar.classList.toggle('scrolled',window.scrollY>60);
+});
+
+// Reveal on scroll
+const reveals=document.querySelectorAll('.reveal');
+const io=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}
+  });
+},{threshold:.12});
+reveals.forEach(el=>io.observe(el));
+
+// Mobile menu
+const burger=document.getElementById('burger');
+const menu=document.getElementById('mobileMenu');
+const close=document.getElementById('mobileClose');
+burger.addEventListener('click',()=>menu.classList.add('open'));
+close.addEventListener('click',()=>menu.classList.remove('open'));
+document.querySelectorAll('.mobile-nav-link').forEach(l=>{
+  l.addEventListener('click',()=>menu.classList.remove('open'));
+});
+</script>
+
+</body>
+</html>
