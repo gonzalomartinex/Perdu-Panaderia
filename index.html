@@ -522,7 +522,13 @@ footer{
     flex-direction:column;
     align-items:center;
   }
-  .social-strip{padding:1.5rem 2rem;flex-wrap:wrap}
+  .social-strip{
+    padding:1.5rem 2rem;
+    flex-wrap:wrap;
+    gap:.9rem 1.25rem;
+    text-align:center;
+  }
+  .social-strip > span{display:none}
   #filosofia{padding:6rem 2rem}
   #cta-final{padding:7rem 2rem}
   .hero-actions{flex-direction:column;align-items:center}
@@ -532,6 +538,11 @@ footer{
   .exp-stat-row{gap:1.5rem}
   .pedidos-btns{flex-direction:column;align-items:center}
   .suc-grid{grid-template-columns:1fr}
+  .social-strip{
+    flex-direction:column;
+    gap:.9rem;
+    padding:1.25rem 1rem;
+  }
 }
 </style>
 </head>
